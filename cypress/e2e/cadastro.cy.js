@@ -31,8 +31,19 @@ describe('Formulário de Ponto de Doação', () => {
 
   context('Campos Obrigatórios', () => {
     it('Não deve cadastrar quando o nome não é informado', () => {
-      const invalidDonationPoint = { ...donationPoint, name: '' }
-      cy.fillDonationForm(invalidDonationPoint)
+      // const invalidDonationPoint = { ...donationPoint, name: '' }
+      // cy.fillDonationForm(invalidDonationPoint)
+      cy.get('input[name="cep"]').type('90660110')
+      cy.get('input[name="email"]').type('lucas@email.com')
+      cy.get('input[name="addressNumber"]').type('1')
+      cy.get('input[name="addressDetails"]').type('casa')
+      
+      cy.contains('span','Gatos').click()
+
+
+
+
+
       cy.get('button[type="submit"]').click()
       cy.get('.alert-error').should('be.visible').and('have.text', 'Informe o seu nome completo')
     })
